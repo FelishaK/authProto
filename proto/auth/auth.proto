@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option go_package = "github.com/FelishaK/authProto;auth1";
+
+service Auth {
+  rpc Register(RegisterRequest) returns (RegisterResponse){}
+  rpc Login(LoginRequest) returns (LoginResponse){}
+  rpc GetAuthedUser(TokenRequest) returns (AuthedUserResponse){}
+  rpc Refresh(TokenRequest) returns (RefreshResponse){}
+}
+
+enum Gender {
+  Male = 0;
+  Female = 1;
+}
+
+message RegisterRequest {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 4;
+  string password = 5;
+  string confirm_password = 6;
+  Gender enum = 7;
+}
+
+message RegisterResponse {
+  int64 user_id = 1;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message TokenRequest {
+  string token = 1;
+}
+
+message RefreshResponse {
+  string access_token = 1;
+}
+
+message AuthedUserResponse {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 4;
+  string role_name = 5;
+}
+
