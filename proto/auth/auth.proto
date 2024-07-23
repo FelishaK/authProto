@@ -20,7 +20,7 @@ message RegisterRequest {
   string email = 4;
   string password = 5;
   string confirm_password = 6;
-  Gender enum = 7;
+  Gender gender = 7;
 }
 
 message RegisterResponse {
